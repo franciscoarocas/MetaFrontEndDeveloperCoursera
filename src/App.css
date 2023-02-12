@@ -8,6 +8,7 @@ body {
   max-width: 1024px;
   margin: 1.5rem auto;
   padding: 0 2rem;
+  text-align: justify;
 }
 
 img { /* Responsive image */
@@ -35,6 +36,24 @@ nav li a {
   text-decoration: none !important;
 }
 
+footer {
+  align-items : start !important;
+}
+
+footer ul {
+  list-style-type: none;
+  text-align: center;
+  margin-top: 0;
+}
+
+footer li {
+  margin: 5px 0;
+}
+
+footer h3 {
+  margin-top: 10px;
+}
+
 .button {
   padding: 0.8rem 2.5rem;
   text-transform: uppercase;
@@ -43,6 +62,12 @@ nav li a {
   border-radius: 4px;
   color: white;
   cursor: pointer;
+}
+
+.banner .button {
+  background-color: var(--brand-light);
+  color: black;
+  margin-top: 1rem;
 }
 
 .banner {
