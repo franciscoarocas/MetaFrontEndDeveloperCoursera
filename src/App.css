@@ -117,7 +117,6 @@ nav li a {
 }
 
 .testimonials {
-  width: 100%;
   padding: 15vh 2rem;
   border-radius: 4px;
   background-color: var(--brand-dark);
@@ -134,7 +133,7 @@ nav li a {
   padding: 1rem;
   background-color: #ccccccbb;
   border-radius: 4px;
-  width: 200px;
+  width: 170px;
 }
 
 .avatar {
@@ -159,4 +158,39 @@ nav li a {
 .stars {
   font-size: 1.2rem;
   color: rgb(255, 187, 0);
+}
+
+.secondCover {
+  align-items: start !important;
+  margin: 2rem 0;
+}
+
+.secondCover > div {
+  flex: 1 1 0;
+  text-align: justify;
+}
+
+.secondCover h1, .secondCover h2 {
+  margin-bottom: 0;
+}
+
+.secondCover h2 {
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+.imgA {
+  position: absolute;
+  width: 300px;
+  z-index: 2;
+  top: 50px;
+  left: 200px;
+}
+
+.imgB {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  top: 20px;
+  left: 80px;
 }
