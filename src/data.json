@@ -4,7 +4,7 @@
     {
       "price" : "12.99$",
       "title" : "Greek salad",
-      "img"   : "/icons_assets/greek salad.jpg"
+      "img"   : "/icons_assets/greek_salad.jpg"
     },
     {
       "price" : "5.90$",
@@ -14,7 +14,7 @@
     {
       "price" : "5.00$",
       "title" : "Lemon Dessert",
-      "img"   : "/icons_assets/lemon dessert.jpg"
+      "img"   : "/icons_assets/lemon_dessert.jpg"
     }
   ]
 }

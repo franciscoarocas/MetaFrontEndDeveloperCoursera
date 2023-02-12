@@ -1,9 +1,9 @@
 
-const Button = ({text}) => {
+const Button = ({children}) => {
 
   return (
     <button className="button">
-      {text}
+      {children}
     </button>
   );
 

@@ -13,11 +13,13 @@ const Home = () => {
       <Banner/>
       <div className="spaceBetween">
         <h2>Specials</h2>
-        <Button text="Book a table"/>
+        <Button>
+          Book a table
+        </Button>
       </div>
       <div className="specials">
         {
-          data['specials'].map((special) => <Special {...special}/>)
+          data['specials'].map((special, key) => <Special key={key} {...special}/>)
         }
       </div>
     </Template>
