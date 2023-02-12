@@ -4,7 +4,7 @@ import Nav from "../nav/nav";
 const Header = () => {
 
   return (
-    <header>
+    <header className="spaceBetween">
       <a href="/">
         <img src="/icons_assets/Logo.svg" alt="Little Lemon Logo"/>
       </a>
