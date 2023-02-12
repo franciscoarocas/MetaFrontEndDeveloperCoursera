@@ -16,5 +16,27 @@
       "title" : "Lemon Dessert",
       "img"   : "/icons_assets/lemon_dessert.jpg"
     }
+  ],
+  "testimonials" : [
+    {
+      "name"   : "Jack",
+      "rating" : 5,
+      "text"   : "Good place to eat."
+    },
+    {
+      "name"   : "Matt",
+      "rating" : 3,
+      "text"   : "Mehh. It was good"
+    },
+    {
+      "name"   : "Laura",
+      "rating" : 4,
+      "text"   : "I enjoy the food"
+    },
+    {
+      "name"   : "Fran",
+      "rating" : 5,
+      "text"   : "Excellent."
+    }
   ]
 }
