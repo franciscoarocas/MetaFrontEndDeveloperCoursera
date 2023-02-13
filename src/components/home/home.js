@@ -11,7 +11,7 @@ const Home = () => {
 
   return (
     <Template>
-      <Banner/>
+      <Banner showButton/>
       <div className="spaceBetween">
         <h2>Specials</h2>
         <Button>

@@ -1,13 +1,15 @@
 
+import { Link } from "react-router-dom";
+
 const Nav = () => {
 
   return (
     <nav>
       <ul>
         <li>
-          <a href="#">
+          <Link to="/">
             Home
-          </a>
+          </Link>
         </li>
         <li>
           <a href="#">
@@ -20,9 +22,9 @@ const Nav = () => {
           </a>
         </li>
         <li>
-          <a href="#">
+          <Link to="/booking">
             Reservation Order
-          </a>
+          </Link>
         </li>
         <li>
           <a href="#">
