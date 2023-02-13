@@ -219,3 +219,11 @@ footer h3 {
   top: 20px;
   left: 80px;
 }
+
+.beforeFooter {
+  position: relative;
+}
+
+.beforeFooter img {
+  border-radius: 4px;
+}
