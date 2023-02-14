@@ -7,7 +7,7 @@ import data from "../../data.json";
 import Special from "../special/special";
 import Testimonial from "../testimonial/testimonial";
 
-const Home = () => {
+const HomePage = () => {
 
   return (
     <Template>
@@ -47,4 +47,4 @@ const Home = () => {
 
 };
 
-export default Home;
+export default HomePage;
