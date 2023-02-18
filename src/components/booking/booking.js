@@ -7,7 +7,9 @@ import BookingForm from "../bookingForm/bookingForm";
 
 import { useState, useReducer } from "react";
 
-const AVAILABLE_TIMES = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
+import { fetchAPI } from '../../api';
+
+const AVAILABLE_TIMES = ["17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30"];
 
 // https://beta.reactjs.org/reference/react/useReducer
 
@@ -40,8 +42,11 @@ export const initializeTimes = (days) => {
 
   for (const day of days) {
     result[day] = {};
+    const parsedDate = Date.parse(day)
+    const daysFromAPI = fetchAPI(new Date(parsedDate));
     AVAILABLE_TIMES.forEach((time) => {
-      result[day][time] = false;
+      const isAvailable = daysFromAPI.indexOf(time) > 0;
+      result[day][time] = isAvailable;
     });
   }
 

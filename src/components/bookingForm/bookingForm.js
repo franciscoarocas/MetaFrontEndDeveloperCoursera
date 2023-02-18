@@ -63,7 +63,7 @@ const BookingForm = ({availableTimes, updateTimes}) => {
           <div>
             <div>
               <label>Number Guests</label>
-              <input type="number" step={1} min={1} max={16} value={1} onChange={(e) => { setGuests(e.target.value) }}/>
+              <input type="number" step={1} min={1} max={16} value={guests} onChange={(e) => { setGuests(e.target.value) }}/>
             </div>
             <div className="mt-1">
               <label>Occasion</label>
