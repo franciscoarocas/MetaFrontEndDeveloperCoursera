@@ -3,36 +3,59 @@ import Button from "../button/button";
 
 import { useState } from "react";
 
-const AVAILABLE_TIMES = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
+// ADD DAYS
+// https://stackoverflow.com/questions/563406/how-to-add-days-to-date
 
-const BookingForm = () => {
+const TODAY = new Date().toISOString().split("T")[0];
 
-  const [date, setDate] = useState()
-  const [time, setTime] = useState(AVAILABLE_TIMES[0])
+const BookingForm = ({availableTimes, updateTimes}) => {
+
+  const [date, setDate] = useState(TODAY)
+  const [time, setTime] = useState(availableTimes[date ? date : TODAY])
+  const [selectedTime, setSelectedTime] = useState("17:00");
   const [guests, setGuests] = useState()
   const [occassion, setOccasion] = useState("Birthday")
 
   const submitForm = () => {
+    updateTimes({
+      type : "BOOK",
+      date   : date,
+      time   : selectedTime
+    });
+  };
+
+
+  const generateTimeInputValues = (values) => {
+
+    let result = [];
+
+    for (const time in values) {
+      if (values[time] === false) {
+        result.push(
+          <option key={time}>{time}</option>
+        );
+      }
+    }
+
+    return result;
 
   };
 
   return (
     <>
-      <h1 className="center">Book a table 👨‍🍳</h1>
+      <h1 className="center">Book Now</h1>
       <div className="bookingFormAll">
         <div className="bookingForm">
           <div>
             <div>
               <label>Date</label>
-              <input type="date" onChange={(e) => { setDate(e.target.value) }}/>
+              <input type="date" min={TODAY} onChange={(e) => { setDate(e.target.value) }}/>
             </div>
             <div className="mt-1">
               <label>Time</label>
-              <select onChange={(e) => { setTime(e.target.value) }}>
+              <select onChange={(e) => { setSelectedTime(e.target.value) }}>
                 {
-                  AVAILABLE_TIMES.map((time) => {
-                    return <option key={time}>{time}</option>
-                  })
+                  generateTimeInputValues(availableTimes[date])
                 }
               </select>
             </div>
