@@ -11,6 +11,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import BookingConfirmation from './components/bookingConfirmation/bookingConfirmation';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/booking",
     element: <Booking/>,
+  },
+  {
+    path: "/bookingConfirmed",
+    element: <BookingConfirmation/>
   }
 ]);
 

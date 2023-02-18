@@ -3,6 +3,10 @@ import Button from "../button/button";
 
 import { useState } from "react";
 
+import { submitAPI } from '../../api';
+
+import { redirect } from "react-router-dom";
+
 // ADD DAYS
 // https://stackoverflow.com/questions/563406/how-to-add-days-to-date
 
@@ -17,11 +21,20 @@ const BookingForm = ({availableTimes, updateTimes}) => {
   const [occassion, setOccasion] = useState("Birthday")
 
   const submitForm = () => {
-    updateTimes({
-      type : "BOOK",
-      date   : date,
-      time   : selectedTime
-    });
+
+    const response = submitAPI();
+
+    if (response) {
+      updateTimes({
+        type : "BOOK",
+        date   : date,
+        time   : selectedTime
+      });
+
+      window.location.href = "/bookingConfirmed";
+
+    }
+
   };
 
 
