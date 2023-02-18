@@ -15,22 +15,34 @@ const deepCopy = (object) => {
   return JSON.parse(JSON.stringify(object));
 };
 
-const initializeTimes = () => {
+export const generateXDays = (date, numberNewDays) => {
 
-  let result = {};
-  let date = new Date();
+  let result = [];
+  let newDate = new Date(date);
 
   const addZeroIfOneDigit = (digit) => {
     return digit < 10 ? "0" + digit : String(digit);
   }
 
-  for (let i = 0; i < 7; ++i) {
-    const parserDate = `${date.getFullYear()}-${addZeroIfOneDigit(date.getMonth()+1)}-${addZeroIfOneDigit(date.getDate())}`;
-    result[parserDate] = {};
+  for (let _ = 0; _ < numberNewDays; ++_) {
+    const parserDate = `${newDate.getFullYear()}-${addZeroIfOneDigit(newDate.getMonth()+1)}-${addZeroIfOneDigit(newDate.getDate())}`;
+    result.push(parserDate);
+    newDate.setDate(newDate.getDate() + 1);
+  }
+
+  return result;
+
+};
+
+export const initializeTimes = (days) => {
+
+  let result = {};
+
+  for (const day of days) {
+    result[day] = {};
     AVAILABLE_TIMES.forEach((time) => {
-      result[parserDate][time] = false;
+      result[day][time] = false;
     });
-    date.setDate(date.getDate() + 1);
   }
 
   return result;
@@ -38,14 +50,13 @@ const initializeTimes = () => {
 }
 
 
-const updateTimes = (state, action) => {
+export const updateTimes = (state, action) => {
 
   let copyState = deepCopy(state);
 
   if (action.type === "BOOK") {
     const date = action.date;
     const time = action.time;
-    console.log("VALUE", copyState[date][time])
     copyState[date][time] = true;
   };
 
@@ -54,7 +65,7 @@ const updateTimes = (state, action) => {
 
 const BookingPage = () => {
 
-  const [availableTimes, dispatchAvailableTimes] = useReducer(updateTimes, {}, initializeTimes);
+  const [availableTimes, dispatchAvailableTimes] = useReducer(updateTimes, {}, () => initializeTimes(generateXDays(new Date, 7)));
 
   return (
     <Template>
