@@ -5,7 +5,7 @@ import Banner from "../banner/banner";
 
 import BookingForm from "../bookingForm/bookingForm";
 
-import { useState, useReducer } from "react";
+import { useReducer } from "react";
 
 import { fetchAPI } from '../../api';
 
@@ -13,9 +13,28 @@ const AVAILABLE_TIMES = ["17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "
 
 // https://beta.reactjs.org/reference/react/useReducer
 
+
+
 const deepCopy = (object) => {
   return JSON.parse(JSON.stringify(object));
 };
+
+
+export const getSelectedDays = (dates) => {
+
+  let result = {};
+
+  for (const day of dates) {
+    const parsedDate = Date.parse(day)
+    const daysFromAPI = fetchAPI(new Date(parsedDate));
+    result[day] = daysFromAPI;
+  }
+
+  return result;
+
+};
+
+
 
 export const generateXDays = (date, numberNewDays) => {
 
@@ -36,7 +55,9 @@ export const generateXDays = (date, numberNewDays) => {
 
 };
 
-export const initializeTimes = (days) => {
+
+
+export const initializeTimes = (days, selectedDays) => {
 
   let result = {};
 
@@ -52,7 +73,7 @@ export const initializeTimes = (days) => {
 
   return result;
 
-}
+};
 
 
 export const updateTimes = (state, action) => {
@@ -70,7 +91,9 @@ export const updateTimes = (state, action) => {
 
 const BookingPage = () => {
 
-  const [availableTimes, dispatchAvailableTimes] = useReducer(updateTimes, {}, () => initializeTimes(generateXDays(new Date, 7)));
+  const dates = generateXDays(new Date, 7);
+
+  const [availableTimes, dispatchAvailableTimes] = useReducer(updateTimes, {}, () => initializeTimes(dates, getSelectedDays(dates)));
 
   return (
     <Template>

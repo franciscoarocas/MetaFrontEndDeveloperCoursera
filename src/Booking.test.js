@@ -1,73 +1,51 @@
 
-import { generateXDays, initializeTimes, updateTimes } from "./components/booking/booking";
+import { generateXDays, initializeTimes, updateTimes, getSelectedDays } from "./components/booking/booking";
 
 describe('Test bookings page fuctions', () => {
 
 
   const days = generateXDays(new Date("Feb 18, 2023 00:00:00"), 2);
-  const initializedTimes = initializeTimes(days);
+  const selectedDays = getSelectedDays(days);
+  const initializedTimes = initializeTimes(days, selectedDays);
 
 
   test('Test initialize time', () => {
 
-    const expected = {
-      '2023-02-18': {
-        '17:00': false,
-        '18:00': false,
-        '19:00': false,
-        '20:00': false,
-        '21:00': false,
-        '22:00': false
-      },
-      '2023-02-19': {
-        '17:00': false,
-        '18:00': false,
-        '19:00': false,
-        '20:00': false,
-        '21:00': false,
-        '22:00': false
+    for (let date in initializedTimes) {
+      for (let hour in initializeTimes[date]) {
+        if (selectedDays[date][hour] !== undefined) {
+          expect(initializedTimes[date][hout]).toBe(false);
+        } else {
+          expect(initializedTimes[date][hout]).toBe(true);
+        }
       }
-    };
-
-    expect(initializedTimes).toStrictEqual(expected);
+    }
 
   });
-
 
 
   test('Test update times', () => {
 
+    const date = "2023-02-18";
+    let randomHour;
+
+    for (let hour in initializeTimes[date]) {
+      if (initializedTimes[date][hour] === false) {
+        randomHour = hour;
+        break;
+      }
+    }
+
     const result = updateTimes(initializedTimes, {
       type : "BOOK",
-      date : "2023-02-18",
-      time : "20:00"
+      date : date,
+      time : randomHour
     });
 
 
-    const expected = {
-      '2023-02-18': {
-        '17:00': false,
-        '18:00': false,
-        '19:00': false,
-        '20:00': true,
-        '21:00': false,
-        '22:00': false
-      },
-      '2023-02-19': {
-        '17:00': false,
-        '18:00': false,
-        '19:00': false,
-        '20:00': false,
-        '21:00': false,
-        '22:00': false
-      }
-    };
-
-
-    expect(result).toStrictEqual(expected);
+    expect(result[date][randomHour]).toBe(true);
 
   });
-
 
 });
 

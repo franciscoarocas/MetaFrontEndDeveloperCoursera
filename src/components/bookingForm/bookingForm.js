@@ -16,8 +16,8 @@ const BookingForm = ({availableTimes, updateTimes}) => {
 
   const [date, setDate] = useState(TODAY)
   const [time, setTime] = useState(availableTimes[date ? date : TODAY])
-  const [selectedTime, setSelectedTime] = useState("17:00");
-  const [guests, setGuests] = useState()
+  const [selectedTime, setSelectedTime] = useState();
+  const [guests, setGuests] = useState(1)
   const [occassion, setOccasion] = useState("Birthday")
 
   const submitForm = () => {
