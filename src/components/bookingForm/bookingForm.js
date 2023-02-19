@@ -93,11 +93,11 @@ const BookingForm = ({availableTimes, updateTimes}) => {
           <div>
             <div>
               <label>Date</label>
-              <input type="date" min={TODAY} max={generateMaxDate(6)} value={date} onChange={(e) => { setDate(e.target.value) }}/>
+              <input ariaLabel="date" type="date" min={TODAY} max={generateMaxDate(6)} value={date} onChange={(e) => { setDate(e.target.value) }}/>
             </div>
             <div className="mt-1">
               <label>Time</label>
-              <select onChange={(e) => { setSelectedTime(e.target.value) }}>
+              <select ariaLabel="time" onChange={(e) => { setSelectedTime(e.target.value) }}>
                 {
                   generateTimeInputValues(availableTimes[date])
                 }
@@ -107,11 +107,11 @@ const BookingForm = ({availableTimes, updateTimes}) => {
           <div>
             <div>
               <label>Number Guests</label>
-              <input type="number" step={1} min={1} max={16} value={guests} onChange={(e) => { setGuests(e.target.value) }}/>
+              <input ariaLabel="number" type="number" step={1} min={1} max={16} value={guests} onChange={(e) => { setGuests(e.target.value) }}/>
             </div>
             <div className="mt-1">
               <label>Occasion</label>
-              <select onChange={(e) => { setOccasion(e.target.value) }}>
+              <select ariaLabel="occasion" onChange={(e) => { setOccasion(e.target.value) }}>
                 <option>Birthday</option>
                 <option>Anniversary</option>
               </select>
@@ -119,7 +119,7 @@ const BookingForm = ({availableTimes, updateTimes}) => {
           </div>
         </div>
         <div className="center">
-          <Button onClick={(e) => { submitForm() }} disabled={checkIfDisabled()}>
+          <Button ariaLabel="On Click" onClick={(e) => { submitForm() }} disabled={checkIfDisabled()}>
               Book Table
           </Button>
         </div>
