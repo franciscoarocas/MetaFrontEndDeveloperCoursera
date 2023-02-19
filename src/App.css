@@ -64,6 +64,11 @@ footer h3 {
   cursor: pointer;
 }
 
+.button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
 .banner .button {
   background-color: var(--brand-light);
   color: black;

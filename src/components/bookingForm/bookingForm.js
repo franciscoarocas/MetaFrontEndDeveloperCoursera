@@ -16,7 +16,7 @@ const BookingForm = ({availableTimes, updateTimes}) => {
 
   const [date, setDate] = useState(TODAY)
   const [time, setTime] = useState(availableTimes[date ? date : TODAY])
-  const [selectedTime, setSelectedTime] = useState();
+  const [selectedTime, setSelectedTime] = useState('--');
   const [guests, setGuests] = useState(1)
   const [occassion, setOccasion] = useState("Birthday")
 
@@ -42,6 +42,10 @@ const BookingForm = ({availableTimes, updateTimes}) => {
 
     let result = [];
 
+    result.push(
+      <option key={'--'}>--</option>
+    )
+
     for (const time in values) {
       if (values[time] === false) {
         result.push(
@@ -54,6 +58,33 @@ const BookingForm = ({availableTimes, updateTimes}) => {
 
   };
 
+  const generateMaxDate = (numberDays) => {
+
+    let newDate = new Date();
+    newDate.setDate(newDate.getDate() + numberDays);
+
+    const addZeroIfOneDigit = (digit) => {
+      return digit < 10 ? "0" + digit : String(digit);
+    }
+
+    const result = `${newDate.getFullYear()}-${addZeroIfOneDigit(newDate.getMonth()+1)}-${addZeroIfOneDigit(newDate.getDate())}`;
+
+    return result;
+
+  };
+
+  const checkIfDisabled = () => {
+
+    const userDate = Date.parse(`${date} ${selectedTime}`);
+
+    if (userDate < new Date() || !(selectedTime !== '--')) {
+      return true;
+    }
+
+    return false;
+
+  }
+
   return (
     <>
       <h1 className="center">Book Now</h1>
@@ -62,7 +93,7 @@ const BookingForm = ({availableTimes, updateTimes}) => {
           <div>
             <div>
               <label>Date</label>
-              <input type="date" min={TODAY} onChange={(e) => { setDate(e.target.value) }}/>
+              <input type="date" min={TODAY} max={generateMaxDate(6)} value={date} onChange={(e) => { setDate(e.target.value) }}/>
             </div>
             <div className="mt-1">
               <label>Time</label>
@@ -88,7 +119,7 @@ const BookingForm = ({availableTimes, updateTimes}) => {
           </div>
         </div>
         <div className="center">
-          <Button onClick={(e) => { submitForm() }}>
+          <Button onClick={(e) => { submitForm() }} disabled={checkIfDisabled()}>
               Book Table
           </Button>
         </div>
